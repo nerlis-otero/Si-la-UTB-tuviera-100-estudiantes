@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Si la UTB tuviera 100 estudiantes | Hábitos de Sueño y Rendimiento Académico</title>
+  
+  <!-- Tipografía Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js para visualización de datos dinámica -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Estilos del Proyecto -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Luces ambientales flotantes de fondo -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+  <div class="ambient-glow ambient-glow-3"></div>
+
+  <!-- ========================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR (GLASS 3D REDONDEADA)
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="nav-glass-panel">
+      <div class="brand-wrapper">
+        <a href="#hero" style="display:flex; align-items:center;">
+          <img src="logo_utb_horizontal.png" alt="Universidad Tecnológica de Bolívar" class="brand-logo-img">
+        </a>
+        <div class="brand-badge-pill">100 Estudiantes</div>
+      </div>
+
+      <nav>
+        <ul class="nav-menu-list">
+          <li><a href="#hero" class="nav-pill-link">Inicio</a></li>
+          <li><a href="#matriz-100" class="nav-pill-link">Matriz de 100</a></li>
+          <li><a href="#radiografia" class="nav-pill-link">Radiografía</a></li>
+          <li><a href="#mitos" class="nav-pill-link">Correlaciones</a></li>
+          <li><a href="#cruces" class="nav-pill-link">Cruces</a></li>
+          <li><a href="#simulador" class="nav-pill-link">Simulador</a></li>
+          <li><a href="#galeria" class="nav-pill-link">Galería</a></li>
+          <li><a href="#conclusiones" class="nav-pill-link">Conclusiones</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions-group">
+        <button id="kiosk-toggle-btn" class="btn btn-outline btn-sm">Modo Feria</button>
+        <a href="#simulador" class="btn btn-primary btn-sm">Test de Perfil</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO BANNER VIBRANTE Y 3D
+       ======================================================================== -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <div class="hero-glass-box">
+        <div class="hero-tag-pill">
+          <span>proyecto de introduccion a la ciencia de datos</span>
+        </div>
+
+        <h1 class="hero-title-main">
+          ¿Cómo duermen los universitarios si la <span class="text-gradient-hero">UTB tuviera 100 personas</span>?
+        </h1>
+
+        <p class="hero-subtitle">
+          Una investigación cuantitativa sobre horas de descanso nocturno, exposición a pantallas en la cama, fatiga en las aulas y calificaciones semestrales. Descubre qué nos quita el sueño y contrasta la creencia popular sobre el promedio académico.
+        </p>
+
+        <div class="hero-chips-row">
+          <div class="chip-3d">
+            <span>Muestra: <strong>100 Estudiantes Válidos</strong></span>
+          </div>
+          <div class="chip-3d">
+            <span>Edad: <strong>87% entre 18 y 22 años</strong></span>
+          </div>
+          <div class="chip-3d">
+            <span>Facultades: <strong>59% Ingenierías y Datos</strong></span>
+          </div>
+          <div class="chip-3d">
+            <span>Método: <strong>Correlación de Spearman</strong></span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+          <a href="#matriz-100" class="btn btn-primary">Explorar la Matriz de 100</a>
+          <a href="#simulador" class="btn btn-green">Hacer Test de Diagnóstico</a>
+          <a href="#cruces" class="btn btn-outline">Ver Cruces de Variables</a>
+        </div>
+      </div>
+
+      <!-- WIDGETS KPIS 3D -->
+      <div class="kpi-widgets-grid">
+        <div class="widget-3d-card widget-purple">
+          <div>
+            <span class="widget-tag-pill">Privación Severa</span>
+            <div class="widget-num-row">
+              <span id="kpi-sleep-less5" class="widget-big-num">26</span>
+              <span class="widget-num-unit">/100</span>
+            </div>
+            <div class="widget-card-title">Duermen menos de 5 horas</div>
+          </div>
+          <div class="widget-card-subtext">El 92% duerme menos de las 7 horas diarias recomendadas por la ciencia médica.</div>
+        </div>
+
+        <div class="widget-3d-card widget-blue">
+          <div>
+            <span class="widget-tag-pill">Calidad de Sueño</span>
+            <div class="widget-num-row">
+              <span id="kpi-sleep-quality" class="widget-big-num">69</span>
+              <span class="widget-num-unit">/100</span>
+            </div>
+            <div class="widget-card-title">Calidad regular o muy mala</div>
+          </div>
+          <div class="widget-card-subtext">Solo 8 de cada 100 estudiantes califican su descanso como óptimo o muy bueno.</div>
+        </div>
+
+        <div class="widget-3d-card widget-green">
+          <div>
+            <span class="widget-tag-pill">Fatiga en Clases</span>
+            <div class="widget-num-row">
+              <span id="kpi-tiredness" class="widget-big-num">47</span>
+              <span class="widget-num-unit">/100</span>
+            </div>
+            <div class="widget-card-title">Cansancio recurrente</div>
+          </div>
+          <div class="widget-card-subtext">Se sienten fatigados durante las clases muchas veces o siempre en la semana.</div>
+        </div>
+
+        <div class="widget-3d-card widget-violet">
+          <div>
+            <span class="widget-tag-pill">Impacto Cognitivo</span>
+            <div class="widget-num-row">
+              <span id="kpi-concentration" class="widget-big-num">58</span>
+              <span class="widget-num-unit">/100</span>
+            </div>
+            <div class="widget-card-title">Pérdida de concentración</div>
+          </div>
+          <div class="widget-card-subtext">El síntoma principal del cansancio: bloquea el enfoque durante el aprendizaje.</div>
+        </div>
+
+        <div class="widget-3d-card widget-white">
+          <div>
+            <span class="widget-tag-pill">Mito Desmentido</span>
+            <div class="widget-num-row">
+              <span class="widget-num-unit">r = </span>
+              <span id="kpi-correlation" class="widget-big-num">0.05</span>
+            </div>
+            <div class="widget-card-title">Relación con promedio</div>
+          </div>
+          <div class="widget-card-subtext">Asociación casi nula: en la UTB, dormir menos horas no predice notas más bajas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 1: MATRIZ DE 100 ESTUDIANTES (3D SQUIRCLES)
+       ======================================================================== -->
+  <section id="matriz-100" class="section">
+    <div class="container">
+      <div class="section-title-block">
+        <span class="section-pill-category cat-purple">Visualización Poblacional 1:1</span>
+        <h2 class="section-main-heading">La Matriz de los 100 Estudiantes</h2>
+        <p class="section-intro-text">
+          Toca cualquier filtro para ver cómo se distribuyen los 100 estudiantes encuestados de la UTB, o haz clic en cualquier casilla para abrir su ficha individual de investigación.
+        </p>
+      </div>
+
+      <div class="card-panel-3d">
+        <!-- Filtros de Botones Redondeados -->
+        <div class="pills-filter-container">
+          <button class="filter-chip-btn active" data-filter="all">Muestra Total (100)</button>
+          <button class="filter-chip-btn" data-filter="less5h">Sueño &lt; 5h (26)</button>
+          <button class="filter-chip-btn" data-filter="bad-quality">Calidad Regular/Mala (69)</button>
+          <button class="filter-chip-btn" data-filter="tired">Cansancio Frecuente (47)</button>
+          <button class="filter-chip-btn" data-filter="trasnocho">Trasnocho Habitual (52)</button>
+          <button class="filter-chip-btn" data-filter="phone">Celular en Cama &gt; 1h (39)</button>
+          <button class="filter-chip-btn" data-filter="caffeine">Estimulantes Diario (23)</button>
+          <button class="filter-chip-btn" data-filter="high-grade">Promedio &gt; 4.0 (46)</button>
+          <button class="filter-chip-btn" data-filter="engineering">Ingenierías y Datos (59)</button>
+          <button class="filter-chip-btn" data-filter="sociales">Ciencias Sociales (17)</button>
+          <button class="filter-chip-btn" data-filter="negocios">Negocios y Economía (17)</button>
+        </div>
+
+        <!-- Barra de Estado Dinámica -->
+        <div class="matrix-status-pillbar">
+          <div class="status-text-live">
+            Filtro seleccionado: <span id="filter-label">Muestra Total</span> &nbsp;—&nbsp; 
+            <strong><span id="filter-count">100</span> de 100 estudiantes</strong> (<span id="filter-pct">100%</span>)
+          </div>
+          <div class="status-indicators-legend">
+            <span><span class="indicator-dot dot-highlighted"></span>Cumplen el criterio</span>
+            <span><span class="indicator-dot dot-inactive"></span>Resto de la muestra</span>
+          </div>
+        </div>
+
+        <!-- Matriz Waffle 10x10 -->
+        <div id="waffle-grid-container" class="waffle-matrix-grid"></div>
+
+        <div style="text-align:center; font-size:12.5px; color:var(--slate-500); margin-top:14px;">
+          Haz clic en cualquiera de las 100 casillas para inspeccionar los datos anonimizados de cada estudiante.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MODAL DOSSIER DE ESTUDIANTE (100% REDONDEADO)
+       ======================================================================== -->
+  <div id="student-modal-overlay" class="modal-overlay-bg">
+    <div class="modal-card-3d">
+      <div class="modal-header-gradient">
+        <div>
+          <div id="modal-student-id" class="modal-student-title">Estudiante #00</div>
+          <div id="modal-career" class="modal-student-subtitle">Programa Académico</div>
+        </div>
+        <button id="student-modal-close" class="modal-close-round" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="modal-body-padded">
+        <div class="modal-tags-flex">
+          <span class="modal-pill-tag">Área: <strong id="modal-area">--</strong></span>
+          <span class="modal-pill-tag">Edad: <strong id="modal-age">--</strong></span>
+          <span class="modal-pill-tag">Género: <strong id="modal-gender">--</strong></span>
+        </div>
+
+        <div class="modal-data-grid">
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Horas de sueño</div>
+            <div id="modal-hours" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Calidad subjetiva</div>
+            <div id="modal-quality" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Cansancio en clase</div>
+            <div id="modal-tired" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Hora de acostarse</div>
+            <div id="modal-bedtime" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Celular en la cama</div>
+            <div id="modal-phone" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Factor principal</div>
+            <div id="modal-factor" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Impacto percibido</div>
+            <div id="modal-impact" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Frecuencia de trasnocho</div>
+            <div id="modal-trasnocho" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Organización estudio</div>
+            <div id="modal-organize" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Consumo de estimulantes</div>
+            <div id="modal-caffeine" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Tiempo en transporte</div>
+            <div id="modal-transport" class="modal-cell-val">--</div>
+          </div>
+          <div class="modal-cell-rounded">
+            <div class="modal-cell-lbl">Promedio semestral</div>
+            <div id="modal-grade" class="modal-cell-val" style="color:var(--green-600);">--</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; padding:12px 18px; background:var(--blue-50); border-radius:var(--radius-md); font-size:12.5px; color:var(--blue-900);">
+          <strong>Hobbies y desconexión:</strong> <span id="modal-hobby">--</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SECCIÓN 2: RADIOGRAFÍA DEL SUEÑO (PESTAÑAS 3D)
+       ======================================================================== -->
+  <section id="radiografia" class="section">
+    <div class="container">
+      <div class="section-title-block">
+        <span class="section-pill-category cat-green">Visualización Dinámica</span>
+        <h2 class="section-main-heading">Radiografía Interactiva del Sueño</h2>
+        <p class="section-intro-text">
+          Explora los hallazgos agrupados por dimensiones clave con gráficos interactivos y porcentajes precisos de la muestra.
+        </p>
+      </div>
+
+      <div class="card-panel-3d">
+        <!-- Pestañas Redondeadas -->
+        <div class="pills-tabs-nav">
+          <button class="tab-pill-btn active" data-tab="tab-sleep">Hábitos de Sueño</button>
+          <button class="tab-pill-btn" data-tab="tab-factors">Factores Detonantes</button>
+          <button class="tab-pill-btn" data-tab="tab-impact">Fatiga y Rendimiento</button>
+          <button class="tab-pill-btn" data-tab="tab-grades">Promedio y Contexto</button>
+        </div>
+
+        <!-- Pestaña 1: Hábitos -->
+        <div id="tab-sleep" class="tab-content active">
+          <div class="chart-cards-pair">
+            <div class="chart-card-3d">
+              <div class="chart-header-block">
+                <div class="chart-main-title">Horas de sueño por noche</div>
+                <div class="chart-sub-desc">26 duermen menos de 5 horas; 65 duermen entre 5 y 7 horas.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-hours"></canvas></div>
+            </div>
+
+            <div class="chart-card-3d">
+              <div class="chart-header-block">
+                <div class="chart-main-title">Calidad subjetiva de descanso</div>
+                <div class="chart-sub-desc">69 califican su sueño como regular o muy malo; solo 8 como muy bueno.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-quality"></canvas></div>
+            </div>
+
+            <div class="chart-card-3d" style="grid-column: 1 / -1;">
+              <div class="chart-header-block">
+                <div class="chart-main-title">Hora habitual de acostarse (días con clase)</div>
+                <div class="chart-sub-desc">El 47% se acuesta entre las 11 p. m. y la 1 a. m., y un 22% después de la 1 a. m.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-bedtime"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pestaña 2: Factores -->
+        <div id="tab-factors" class="tab-content">
+          <div class="chart-cards-pair">
+            <div class="chart-card-3d">
+              <div class="chart-header-block">
+                <div class="chart-main-title">¿Qué es lo que más afecta las horas de sueño?</div>
+                <div class="chart-sub-desc">Los trabajos (29) y exámenes (29) acaparan el 58% de las causas principales.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-factors"></canvas></div>
+            </div>
+
+            <div class="chart-card-3d">
+              <div class="chart-header-block">
+                <div class="chart-main-title">Tiempo de uso del celular en la cama</div>
+                <div class="chart-sub-desc">39 usan el celular más de 1 hora antes de dormir y 24 durante 1 hora.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-phone"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pestaña 3: Cansancio -->
+        <div id="tab-impact" class="tab-content">
+          <div class="chart-cards-pair">
+            <div class="chart-card-3d">
+              <div class="chart-header-block">
+                <div class="chart-main-title">Frecuencia de cansancio durante clases</div>
+                <div class="chart-sub-desc">47 se sienten fatigados muchas veces o siempre; solo 3 nunca se cansan.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-tiredness"></canvas></div>
+            </div>
+
+            <div class="chart-card-3d">
+              <div class="chart-header-block">
+                <div class="chart-main-title">¿Cómo afecta el cansancio al rendimiento?</div>
+                <div class="chart-sub-desc">58 señalan que les cuesta mucho concentrarse, 14 que les cuesta aprender.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-impact"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pestaña 4: Rendimiento -->
+        <div id="tab-grades" class="tab-content">
+          <div class="chart-cards-pair">
+            <div class="chart-card-3d">
+              <div class="chart-header-block">
+                <div class="chart-main-title">Promedio del semestre anterior</div>
+                <div class="chart-sub-desc">Muestra con alto rendimiento académico: el 80% está entre 3.6 y 4.5.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-grades"></canvas></div>
+            </div>
+
+            <div class="chart-card-3d">
+              <div class="chart-header-block">
+                <div class="chart-main-title">Distribución por áreas académicas</div>
+                <div class="chart-sub-desc">59% en Ingenierías y Datos, 17% Ciencias Sociales y 17% Negocios.</div>
+              </div>
+              <div class="chart-canvas-container"><canvas id="chart-faculties"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 3: MITOS VS. REALIDAD (SPEARMAN)
+       ======================================================================== -->
+  <section id="mitos" class="section">
+    <div class="container">
+      <div class="section-title-block">
+        <span class="section-pill-category cat-blue">Evidencia Rigurosa</span>
+        <h2 class="section-main-heading">Mitos y Realidades Estadísticas</h2>
+        <p class="section-intro-text">
+          Correlaciones ordinales de Spearman que demuestran qué relaciones existen realmente en la población de la UTB.
+        </p>
+      </div>
+
+      <div class="myth-cards-3d-grid">
+        <div class="myth-card-styled">
+          <div>
+            <span class="myth-badge-round badge-refuted">Mito Desmentido</span>
+            <div class="myth-headline">"Dormir poco reduce directamente el promedio"</div>
+            <p class="myth-body-para">
+              En esta muestra, las correlaciones entre el promedio y las horas de sueño (r = −0.08) y la calidad (r = +0.05) son prácticamente nulas. Los estudiantes con calificaciones destacadas (4.1 a 4.5) presentan tasas de trasnocho y déficit de descanso similares a los demás.
+            </p>
+          </div>
+          <div class="pill-stat-box">Correlación Sueño ↔ Promedio: <strong>r ≈ 0.00</strong></div>
+        </div>
+
+        <div class="myth-card-styled">
+          <div>
+            <span class="myth-badge-round badge-proven">Hecho Comprobado</span>
+            <div class="myth-headline">"El mal descanso bloquea la concentración"</div>
+            <p class="myth-body-para">
+              Existe una correlación inversa moderada de r = −0.50 entre la calidad del sueño y el cansancio en clase. Quienes duermen peor reportan altos niveles de fatiga que impactan severamente su concentración en el aula (58%).
+            </p>
+          </div>
+          <div class="pill-stat-box">Calidad de Sueño ↔ Cansancio: <strong>r = −0.50</strong></div>
+        </div>
+
+        <div class="myth-card-styled">
+          <div>
+            <span class="myth-badge-round badge-observation">Pista a Explorar</span>
+            <div class="myth-headline">"El celular nocturno tiene una relación negativa"</div>
+            <p class="myth-body-para">
+              El tiempo de celular en la cama antes de dormir mostró una correlación moderada-débil de r = −0.28 con el promedio. A mayor tiempo de pantalla en la cama, se aprecia una ligera tendencia hacia calificaciones menores.
+            </p>
+          </div>
+          <div class="pill-stat-box">Celular en Cama ↔ Promedio: <strong>r = −0.28</strong></div>
+        </div>
+      </div>
+
+      <!-- Tabla Spearman con esquinas redondeadas -->
+      <div class="card-panel-3d">
+        <div style="font-size:16px; font-weight:800; color:var(--slate-900); margin-bottom:4px;">
+          Matriz Completa de Correlaciones de Spearman
+        </div>
+        <div style="font-size:12.5px; color:var(--slate-500); margin-bottom:16px;">
+          Valores entre −1.00 (inversa fuerte) y +1.00 (directa fuerte). Destacadas en tono verde las relaciones directas y en tono rojo las inversas significativas.
+        </div>
+        <div id="spearman-table-container" class="spearman-wrapper-round"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 4: CRUCES DE VARIABLES
+       ======================================================================== -->
+  <section id="cruces" class="section">
+    <div class="container">
+      <div class="section-title-block">
+        <span class="section-pill-category cat-green">Análisis Bivariado</span>
+        <h2 class="section-main-heading">Laboratorio de Cruces de Variables</h2>
+        <p class="section-intro-text">
+          Selecciona qué variables contrastar para observar su distribución porcentual apilada y la conclusión de investigación correspondiente.
+        </p>
+      </div>
+
+      <div class="card-panel-3d">
+        <div class="cross-tabs-pills">
+          <button class="cross-round-btn active" data-cross="calidad_cansancio">Calidad vs. Cansancio</button>
+          <button class="cross-round-btn" data-cross="horas_cansancio">Horas vs. Cansancio</button>
+          <button class="cross-round-btn" data-cross="hora_calidad">Hora acostarse vs. Calidad</button>
+          <button class="cross-round-btn" data-cross="celular_calidad">Celular vs. Calidad</button>
+          <button class="cross-round-btn" data-cross="organiza_trasnocho">Organización vs. Trasnocho</button>
+          <button class="cross-round-btn" data-cross="transporte_horas">Transporte vs. Horas</button>
+          <button class="cross-round-btn" data-cross="horas_promedio">Horas vs. Promedio</button>
+          <button class="cross-round-btn" data-cross="calidad_promedio">Calidad vs. Promedio</button>
+        </div>
+
+        <div class="cross-display-panel">
+          <div class="cross-insight-banner">
+            <div>
+              <div id="cross-title" class="cross-headline">Título del Cruce</div>
+              <div id="cross-desc" class="cross-body-desc">Descripción técnica</div>
+              <div id="cross-insight" class="cross-highlight-takeaway">Hallazgo principal</div>
+            </div>
+            <button id="cross-fig-btn" class="btn btn-outline btn-sm">Ver Gráfico Original en HD</button>
+          </div>
+
+          <div style="position:relative; height:310px; width:100%; background:var(--white); border-radius:var(--radius-md); padding:18px; border:1px solid var(--slate-200); box-shadow:var(--shadow-3d-sm);">
+            <canvas id="chart-crosstab"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 5: SIMULADOR DE FERIA (TEST DE PERFIL - SIN EMOJIS)
+       ======================================================================== -->
+  <section id="simulador" class="section">
+    <div class="container">
+      <div class="section-title-block">
+        <span class="section-pill-category cat-purple">Participación en Stand</span>
+        <h2 class="section-main-heading">Diagnóstico de Perfil de Sueño</h2>
+        <p class="section-intro-text">
+          Ingresa tus hábitos de descanso nocturno y calcula tu nivel de fatiga estimada en contraste con los 100 estudiantes de la UTB.
+        </p>
+      </div>
+
+      <div class="simulator-3d-container">
+        <div class="sim-inputs-grid">
+          <div class="sim-input-box box-blue">
+            <label class="sim-label-clean">1. Hora habitual de acostarse</label>
+            <select id="sim-bedtime" class="sim-select-round">
+              <option value="early">A las 9:00 p.m. o antes</option>
+              <option value="late11" selected>Entre 9:00 y 11:00 p.m.</option>
+              <option value="late1">Entre 11:00 p.m. y 1:00 a.m.</option>
+              <option value="late3">Después de la 1:00 a.m.</option>
+            </select>
+          </div>
+
+          <div class="sim-input-box box-green">
+            <label class="sim-label-clean">2. Horas promedio de sueño</label>
+            <select id="sim-hours" class="sim-select-round">
+              <option value="<5">Menos de 5 horas</option>
+              <option value="5-7" selected>Entre 5 y 7 horas</option>
+              <option value="7-9">Entre 7 y 9 horas</option>
+              <option value=">9">Más de 9 horas</option>
+            </select>
+          </div>
+
+          <div class="sim-input-box box-purple">
+            <label class="sim-label-clean">3. Tiempo de celular en cama</label>
+            <select id="sim-phone" class="sim-select-round">
+              <option value="15m">15 minutos o menos</option>
+              <option value="30m">30 minutos</option>
+              <option value="1h" selected>1 hora</option>
+              <option value=">1h">Más de 1 hora</option>
+            </select>
+          </div>
+
+          <div class="sim-input-box box-white">
+            <label class="sim-label-clean">4. Frecuencia de trasnocho</label>
+            <select id="sim-trasnocho" class="sim-select-round">
+              <option value="never">Nunca o casi nunca</option>
+              <option value="sometimes">Algunas veces</option>
+              <option value="often" selected>Casi siempre</option>
+              <option value="always">Siempre</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="text-align:center;">
+          <button id="sim-calc-btn" class="btn btn-green" style="font-size:14.5px; padding:12px 28px;">
+            Calcular Mi Diagnóstico de Sueño
+          </button>
+        </div>
+
+        <!-- Tarjeta de Resultados del Simulador -->
+        <div id="sim-result-card" class="sim-result-card-3d">
+          <div class="sim-result-header-row">
+            <div>
+              <div id="sim-name" class="sim-archetype-h3">Perfil Resultante</div>
+              <div id="sim-tagline" class="sim-archetype-subdesc">Descripción del patrón de descanso</div>
+            </div>
+            <div id="sim-risk-badge" class="sim-score-pill-badge">Nivel de Riesgo</div>
+          </div>
+
+          <div class="sim-progress-track-round">
+            <div id="sim-progress-fill" class="sim-progress-fill-anim" style="width:0%;"></div>
+          </div>
+
+          <div style="font-size:13px; color:var(--slate-600); margin-bottom:14px; padding:12px 18px; background:var(--purple-50); border-radius:var(--radius-md);">
+            Similitud poblacional: Tu patrón coincide aproximadamente con el <strong id="sim-simil-pct" style="color:var(--purple-800);">--%</strong> de los estudiantes encuestados en la UTB.
+          </div>
+
+          <div style="font-size:13.5px; font-weight:800; color:var(--slate-900); margin-top:14px;">
+            Recomendaciones basadas en la evidencia del estudio:
+          </div>
+          <ul id="sim-advice-list" class="sim-advice-list-clean"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECCIÓN 6: GALERÍA CIENTÍFICA
+       ======================================================================== -->
+  <section id="galeria" class="section">
+    <div class="container">
+      <div class="section-title-block">
+        <span class="section-pill-category cat-blue">Evidencia Visual Original</span>
+        <h2 class="section-main-heading">Galería de Figuras Analíticas</h2>
+        <p class="section-intro-text">
+          Colección de las 24 figuras generadas en el entorno analítico de Python. Haz clic en cualquiera para abrirla en alta resolución con zoom y lectura técnica.
+        </p>
+      </div>
+
+      <div class="card-panel-3d">
+        <div class="gallery-pills-filter">
+          <button class="filter-chip-btn gallery-filter-btn active" data-cat="all">Todas (24 Figuras)</button>
+          <button class="filter-chip-btn gallery-filter-btn" data-cat="waffles">Gráficos Waffle</button>
+          <button class="filter-chip-btn gallery-filter-btn" data-cat="cruces">Cruces de Variables</button>
+          <button class="filter-chip-btn gallery-filter-btn" data-cat="correlaciones">Correlaciones</button>
+          <button class="filter-chip-btn gallery-filter-btn" data-cat="habitos">Hábitos y Factores</button>
+          <button class="filter-chip-btn gallery-filter-btn" data-cat="rendimiento">Rendimiento</button>
+          <button class="filter-chip-btn gallery-filter-btn" data-cat="perfil">Perfil Académico</button>
+        </div>
+
+        <div id="gallery-grid-container" class="gallery-cards-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL LIGHTBOX REDONDEADO -->
+  <div id="lightbox-modal" class="lightbox-modal-backdrop">
+    <div class="lightbox-content-rounded">
+      <div class="lightbox-header-dark">
+        <div id="lightbox-title" style="font-size:16px; font-weight:800;">Figura Científica</div>
+        <button id="lightbox-close" class="modal-close-round">✕</button>
+      </div>
+      <div class="lightbox-body-preview">
+        <img id="lightbox-img" src="" alt="Figura" class="lightbox-img-full">
+      </div>
+      <div class="lightbox-desc-footer">
+        <div style="font-size:11.5px; font-weight:800; color:var(--blue-800); text-transform:uppercase; margin-bottom:4px;">
+          Interpretación de la Evidencia
+        </div>
+        <p id="lightbox-insight" style="font-size:14px; color:var(--slate-700); line-height:1.55;">Detalle</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SECCIÓN 7: CONCLUSIONES Y FICHA TÉCNICA
+       ======================================================================== -->
+  <section id="conclusiones" class="section">
+    <div class="container">
+      <div class="section-title-block">
+        <span class="section-pill-category cat-purple">Síntesis Académica</span>
+        <h2 class="section-main-heading">Conclusiones y Ficha Metodológica</h2>
+        <p class="section-intro-text">
+          Principales hallazgos del estudio y parámetros técnicos que respaldan la investigación.
+        </p>
+      </div>
+
+      <div class="conclusions-triad-grid">
+        <div class="conclusion-card-round blue-top">
+          <div class="conclusion-h4">Déficit Generalizado de Descanso</div>
+          <p class="conclusion-p">
+            Si la UTB tuviera 100 estudiantes, 92 dormirían menos de 7 horas y 69 calificarían su descanso como deficiente. La acumulación de entregas y exámenes constituye el factor detonante en 58 de cada 100 estudiantes.
+          </p>
+        </div>
+
+        <div class="conclusion-card-round purple-top">
+          <div class="conclusion-h4">Desvinculación con el Promedio</div>
+          <p class="conclusion-p">
+            No se identificó correlación estadística entre dormir mal y obtener calificaciones más bajas. Los estudiantes logran sostener notas competitivas (80% entre 3.6 y 4.5) a expensas de su salud y con una pérdida severa en la concentración en clase (58%).
+          </p>
+        </div>
+
+        <div class="conclusion-card-round green-top">
+          <div class="conclusion-h4">Recomendaciones Institucionales</div>
+          <p class="conclusion-p">
+            Se propone la coordinación de calendarios entre programas para evitar picos simultáneos de evaluaciones, campañas de higiene digital nocturna y la habilitación de zonas de descanso activo en el campus Ternera.
+          </p>
+        </div>
+      </div>
+
+      <!-- Ficha Técnica -->
+      <div class="tech-panel-dark">
+        <div style="font-size:18px; font-weight:800; margin-bottom:6px;">Ficha Técnica de la Investigación</div>
+        <div style="font-size:13px; color:var(--slate-400); margin-bottom:22px;">
+          Información metodológica para evaluación en la feria académica.
+        </div>
+
+        <div class="tech-grid-cols">
+          <div class="tech-column-item">
+            <div class="tech-column-lbl">Muestra</div>
+            <div class="tech-column-val">100 Respuestas Válidas</div>
+          </div>
+          <div class="tech-column-item">
+            <div class="tech-column-lbl">Población</div>
+            <div class="tech-column-val">Pregrado UTB</div>
+          </div>
+          <div class="tech-column-item">
+            <div class="tech-column-lbl">Muestreo</div>
+            <div class="tech-column-val">No probabilístico / Autorreporte</div>
+          </div>
+          <div class="tech-column-item">
+            <div class="tech-column-lbl">Herramientas</div>
+            <div class="tech-column-val">Python (Pandas, Matplotlib)</div>
+          </div>
+          <div class="tech-column-item">
+            <div class="tech-column-lbl">Métrica</div>
+            <div class="tech-column-val">Coeficiente de Spearman</div>
+          </div>
+          <div class="tech-column-item">
+            <div class="tech-column-lbl">Sesgo Declarado</div>
+            <div class="tech-column-val">59% Carreras de Tecnología</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER CON LOGO Y ESQUINAS REDONDEADAS
+       ======================================================================== -->
+  <footer class="site-footer-modern">
+    <div class="container footer-inner-column">
+      <img src="logo_utb_horizontal.png" alt="Universidad Tecnológica de Bolívar" class="footer-logo-main">
+      <div class="footer-copy-text">
+        Universidad Tecnológica de Bolívar • Proyecto de Investigación y Divulgación Científica
+      </div>
+      <div style="font-size:12px; color:var(--slate-400);">
+        Feria Universitaria • Todos los derechos reservados
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
