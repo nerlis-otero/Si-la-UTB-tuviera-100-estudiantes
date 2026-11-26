@@ -3,7 +3,7 @@
 Proyecto de investigación y divulgación de **Introducción a la Ciencia de Datos**  
 **Universidad Tecnológica de Bolívar (UTB)** — Cartagena de Indias, Colombia (2024–2026)
 
-**Autores:** Nerlis Nikol Otero Pérez & Carlos David Manrique Fals  
+**Autores:** Nerlis Otero, Elian Perea, Maria Barrientos, Luz Martinez   
 **Programa:** Ciencia de Datos — Facultad de Ingeniería / Escuela de Transformación Digital  
 
 ---
